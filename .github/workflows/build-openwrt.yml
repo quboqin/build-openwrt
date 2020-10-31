@@ -58,12 +58,6 @@ jobs:
           cd openwrt
           $GITHUB_WORKSPACE/$DIY_P1_SH
 
-      - name: update feeds
-        run: cd openwrt && ./scripts/feeds update -a
-
-      - name: install feeds
-        run: cd openwrt && ./scripts/feeds install -a
-
       - name: load custom configuration
         run: |
           [ -e files ] && mv files openwrt/files
@@ -71,6 +65,12 @@ jobs:
           chmod +x $DIY_P2_SH
           cd openwrt
           $GITHUB_WORKSPACE/$DIY_P2_SH
+
+      - name: update feeds
+        run: cd openwrt && ./scripts/feeds update -a
+
+      - name: install feeds
+        run: cd openwrt && ./scripts/feeds install -a
 
       - name: SSH connection to Actions
         uses: quboqin/ssh2actions@main
